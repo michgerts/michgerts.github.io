@@ -17,7 +17,7 @@ var cityData = [],
     width = 500, 
     height = 500;
 
-d3.csv("short_response_english", function(data) {
+d3.csv("short_response_english.csv", function(data) {
     // build the list of city names
     data.forEach( function (d) {
         cityData.push(d.place);
