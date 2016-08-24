@@ -34,7 +34,7 @@ countriesContinents["Israel"] = "Asia";
 var dogResearchData = [], 
     width = 500, 
     height = 500;
-var forbbidenWords = ["a","and","then","with","on","the","it","he","or","in","to","she","'",","];
+var forbbidenWords = ["a","and","then","with","on","the","it","he","or","in","to","she","'",","`"];
 d3.csv("output2.csv", function(data) {
     // build the list of city names
     data.forEach( function (d) {
@@ -184,8 +184,7 @@ var stemmer = (function(){
             "aliti" : "al",
             "iviti" : "ive",
             "biliti" : "ble",
-            "logi" : "log",
-            "anim" : "animal"
+            "logi" : "log"
 
         },
 
@@ -267,7 +266,7 @@ var stemmer = (function(){
             if (re.test(stem)) { w = stem + "y"; }
         }
 
-        // Step 2
+        //Step 2
         re = /^(.+?)(ational|tional|enci|anci|izer|bli|alli|entli|eli|ousli|ization|ation|ator|alism|iveness|fulness|ousness|aliti|iviti|biliti|logi)$/;
         if (re.test(w)) {
             var fp = re.exec(w);
@@ -294,7 +293,7 @@ var stemmer = (function(){
         // Step 4
         re = /^(.+?)(al|ance|ence|er|ic|able|ible|ant|ement|ment|ent|ou|ism|ate|iti|ous|ive|ize)$/;
         re2 = /^(.+?)(s|t)(ion)$/;
-        if (re.test(w)) {
+        if (re.test(w) && re != "animal") {
             var fp = re.exec(w);
             stem = fp[1];
             re = new RegExp(mgr1);
