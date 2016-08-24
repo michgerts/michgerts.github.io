@@ -34,13 +34,13 @@ countriesContinents["Israel"] = "Asia";
 var dogResearchData = [], 
     width = 500, 
     height = 500;
-
+var forbbidenWords = ["a","and","then","with"];
 d3.csv("output2.csv", function(data) {
     // build the list of city names
     data.forEach( function (d) {
         d.word = d.word.toLowerCase();
-
-        dogResearchData.push({word: d.word, location: d.location, education: d.education, age : d.age});
+        if (forbbidenWords.indexOf(d.word) != -1 )
+            dogResearchData.push({word: d.word, location: d.location, education: d.education, age : d.age});
     });
 
 for (var i=0; i < dogResearchData.length; i++)  {
@@ -161,17 +161,6 @@ var words = [];
 return words;
 }
 
-// Porter stemmer in Javascript. Few comments, but it's easy to follow against the rules in the original
-// paper, in
-//
-//  Porter, 1980, An algorithm for suffix stripping, Program, Vol. 14,
-//  no. 3, pp 130-137,
-//
-// see also http://www.tartarus.org/~martin/PorterStemmer
-
-// Release 1 be 'andargor', Jul 2004
-// Release 2 (substantially revised) by Christopher McKenzie, Aug 2009
-
 var stemmer = (function(){
     var step2list = {
             "ational" : "ate",
@@ -195,6 +184,7 @@ var stemmer = (function(){
             "iviti" : "ive",
             "biliti" : "ble",
             "logi" : "log"
+
         },
 
         step3list = {
@@ -204,7 +194,7 @@ var stemmer = (function(){
             "iciti" : "ic",
             "ical" : "ic",
             "ful" : "",
-            "ness" : ""
+            "ness" : ""s
         },
 
         c = "[^aeiou]",          // consonant
@@ -272,7 +262,7 @@ var stemmer = (function(){
             var fp = re.exec(w);
             stem = fp[1];
             re = new RegExp(s_v);
-            if (re.test(stem)) { w = stem + "i"; }
+            if (re.test(stem)) { w = stem + "y"; }
         }
 
         // Step 2
