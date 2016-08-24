@@ -114,10 +114,7 @@ function draw(words) {
    // # define a zoom behavior
 zoom = d3.behavior.zoom()
   .scaleExtent([1,10]) //# min-max zoom
-  .on 'zoom', () ->
-    //# GEOMETRIC ZOOM
-    zoomable_layer
-      .attr
+  .on 'zoom', () ->zoomable_layer.attr
         transform: "translate(#{zoom.translate()})scale(#{zoom.scale()})"
 
 //# bind the zoom behavior to the main SVG
