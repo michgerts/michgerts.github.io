@@ -338,6 +338,9 @@ var stemmer = (function(){
             w = firstch.toLowerCase() + w.substr(1);
         }
 
+        if(w.includes("excit"))
+            var a = 1;
+
         return w;
     }
 })();
