@@ -39,7 +39,7 @@ d3.csv("output2.csv", function(data) {
     // build the list of city names
     data.forEach( function (d) {
         d.word = d.word.toLowerCase();
-        if (forbbidenWords.indexOf(d.word) != -1 )
+        if (forbbidenWords.indexOf(d.word) == -1 )
             dogResearchData.push({word: d.word, location: d.location, education: d.education, age : d.age});
     });
 
