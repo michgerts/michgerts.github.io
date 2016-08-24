@@ -314,7 +314,7 @@ var stemmer = (function(){
 
         // Step 5
         re = /^(.+?)e$/;
-        if (re.test(w)) {
+        if (re.test(w) && !(w.includes("excit"))) {
             var fp = re.exec(w);
             stem = fp[1];
             re = new RegExp(mgr1);
