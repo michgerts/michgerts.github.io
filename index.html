@@ -113,7 +113,7 @@ var wordsAsianNonExpert = buildWords(asiaNonExpert);
 function draw(words) {
    // # define a zoom behavior
 zoom = d3.behavior.zoom()
-  .scaleExtent([1,10]) # min-max zoom
+  .scaleExtent([1,10]) //# min-max zoom
   .on 'zoom', () ->
     //# GEOMETRIC ZOOM
     zoomable_layer
