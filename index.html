@@ -255,7 +255,7 @@ var stemmer = (function(){
                 re4 = new RegExp("^" + C + v + "[^aeiouwxy]$");
                 if (re2.test(w)) {  w = w + "e"; }
                 else if (re3.test(w)) { re = /.$/; w = w.replace(re,""); }
-                else if (re4.test(w) || (w.includes("excit"))) 
+                else if (re4.test(w)) 
                     { w = w + "e"; }
             }
         }
@@ -314,7 +314,7 @@ var stemmer = (function(){
 
         // Step 5
         re = /^(.+?)e$/;
-        if (re.test(w) && !(w.includes("excit"))) {
+        if (re.test(w)) {
             var fp = re.exec(w);
             stem = fp[1];
             re = new RegExp(mgr1);
@@ -339,9 +339,12 @@ var stemmer = (function(){
         }
 
         if(w.includes("excit"))
-            var a = 1;
+        {
+            w = w + 'e';
+        }
 
         return w;
+
     }
 })();
 
