@@ -244,7 +244,7 @@ var stemmer = (function(){
                 re = /.$/;
                 w = w.replace(re,"");
             }
-        } else if (re2.test(w) && w != excited) {
+        } else if (re2.test(w) && w != "excited") {
             var fp = re2.exec(w);
             stem = fp[1];
             re2 = new RegExp(s_v);
