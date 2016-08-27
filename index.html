@@ -114,19 +114,17 @@ for (var i=0; i < dogResearchData.length; i++)  {
         
 }
 
-var word_entries = d3.entries(asiaNonExpert);
+var wordsAsianNonExpert = d3.entries(asiaNonExpert);
 
 var xScale = d3.scale.linear()
-           .domain([0, d3.max(word_entries, function(d) {
+           .domain([0, d3.max(wordsAsianNonExpert, function(d) {
               return d.value;
             })
            ])
            .range([10,100]);
 
-var wordsAsianNonExpert = buildWords(asiaNonExpert); 
-
     d3.layout.cloud().size([500, 500])
-        .words(word_entries)
+        .words(wordsAsianNonExpert)
        // .rotate(function() { return ~~(Math.random() * 2) * 90; })
         .padding(10)
         .font("Impact")
@@ -137,77 +135,115 @@ var wordsAsianNonExpert = buildWords(asiaNonExpert);
         .start();
 
 
+var wordsAmericanNonExpert = d3.entries(americaNonExpert);
 
- var wordsAmericanNonExpert = buildWords(americaNonExpert); 
+var xScale = d3.scale.linear()
+           .domain([0, d3.max(wordsAmericanNonExpert, function(d) {
+              return d.value;
+            })
+           ])
+           .range([10,100]);
+
+ //var wordsAmericanNonExpert = buildWords(americaNonExpert); 
 
     d3.layout.cloud().size([500, 500])
-        .words(wordsAmericanNonExpert.map(function(d) {
-            return {text: d, size: americaNonExpert[d]*7};
-        }))
+        .words(wordsAmericanNonExpert)
        // .rotate(function() { return ~~(Math.random() * 2) * 90; })
         .padding(10)
         .font("Impact")
         .spiral("archimedean")
-        .fontSize(function(d) { return d.size; })
+        .fontSize(function(d) { return xScale(+d.value); })
+        .text(function(d) { return d.key; })
         .on("end", draw2)
         .start();
 
- var wordsEuropeNonExpert = buildWords(europeNonExpert); 
+
+var wordsEuropeNonExpert = d3.entries(europeNonExpert);
+
+var xScale = d3.scale.linear()
+           .domain([0, d3.max(wordsEuropeNonExpert, function(d) {
+              return d.value;
+            })
+           ])
+           .range([10,100]);
+
+ //var wordsEuropeNonExpert = buildWords(europeNonExpert); 
 
     d3.layout.cloud().size([500, 500])
-        .words(wordsEuropeNonExpert.map(function(d) {
-            return {text: d, size: europeNonExpert[d]*7};
-        }))
+        .words(wordsEuropeNonExpert)
        // .rotate(function() { return ~~(Math.random() * 2) * 90; })
         .padding(10)
         .font("Impact")
         .spiral("archimedean")
-        .fontSize(function(d) { return d.size; })
+        .fontSize(function(d) { return xScale(+d.value); })
+        .text(function(d) { return d.key; })
         .on("end", draw3)
         .start();
 
 
- var wordsAsianExpert = buildWords(asiaExpert); 
+
+var wordsAsianExpert = d3.entries(asiaExpert);
+
+var xScale = d3.scale.linear()
+           .domain([0, d3.max(wordsAsianExpert, function(d) {
+              return d.value;
+            })
+           ])
+           .range([10,100]);
+// var wordsAsianExpert = buildWords(asiaExpert); 
 
     d3.layout.cloud().size([500, 500])
-        .words(wordsAsianExpert.map(function(d) {
-            return {text: d, size: asiaExpert[d]*7};
-        }))
+        .words(wordsAsianExpert)
        // .rotate(function() { return ~~(Math.random() * 2) * 90; })
         .padding(10)
         .font("Impact")
         .spiral("archimedean")
-        .fontSize(function(d) { return d.size; })
+        .fontSize(function(d) { return xScale(+d.value); })
+        .text(function(d) { return d.key; })
         .on("end", draw4)
         .start();
 
+var wordsAmericanExpert = d3.entries(americaExpert);
 
+var xScale = d3.scale.linear()
+           .domain([0, d3.max(wordsAmericanExpert, function(d) {
+              return d.value;
+            })
+           ])
+           .range([10,100]);
 
- var wordsAmericanExpert = buildWords(americaExpert); 
+ //var wordsAmericanExpert = buildWords(americaExpert); 
 
     d3.layout.cloud().size([500, 500])
-        .words(wordsAmericanExpert.map(function(d) {
-            return {text: d, size: americaExpert[d]*7};
-        }))
+        .words(wordsAmericanExpert)
        // .rotate(function() { return ~~(Math.random() * 2) * 90; })
         .padding(10)
         .font("Impact")
         .spiral("archimedean")
-        .fontSize(function(d) { return d.size; })
+        .fontSize(function(d) { return xScale(+d.value); })
+        .text(function(d) { return d.key; })
         .on("end", draw5)
         .start();
 
- var wordsEuropeExpert = buildWords(europeExpert); 
+
+var wordsEuropeExpert = d3.entries(europeExpert);
+
+var xScale = d3.scale.linear()
+           .domain([0, d3.max(wordsEuropeExpert, function(d) {
+              return d.value;
+            })
+           ])
+           .range([10,100]);
+// var wordsEuropeExpert = buildWords(europeExpert); 
 
     d3.layout.cloud().size([500, 500])
-        .words(wordsEuropeExpert.map(function(d) {
-            return {text: d, size: europeExpert[d]*7};
-        }))
+        .words(wordsEuropeExpert)
        // .rotate(function() { return ~~(Math.random() * 2) * 90; })
         .padding(10)
         .font("Impact")
         .spiral("archimedean")
-        .fontSize(function(d) { return d.size; })
+        .fontSize(function(d) { return xScale(+d.value); })
+        .text(function(d) { return d.key; })
         .on("end", draw6)
         .start();
 
