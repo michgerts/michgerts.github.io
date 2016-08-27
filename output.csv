@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 location,age,education,word
 Russia,35,dog Owner,A
 Russia,35,dog Owner,dog
@@ -8733,7 +8732,7 @@ Slovenia,43,For a basic understanding of the behavior of dogs online courses rea
 Slovenia,43,For a basic understanding of the behavior of dogs online courses reading of literature,very
 Slovenia,43,For a basic understanding of the behavior of dogs online courses reading of literature,involved
 Slovenia,43,For a basic understanding of the behavior of dogs online courses reading of literature,excitation
-=======
+=======,,,
 country,age,exprience,word
 Russia,35,dog Owner,dog
 Russia,35,dog Owner,hunts
@@ -17467,4 +17466,4 @@ Slovenia,43,For a basic understanding of the behavior of dogs online courses rea
 Slovenia,43,For a basic understanding of the behavior of dogs online courses reading of literature,very
 Slovenia,43,For a basic understanding of the behavior of dogs online courses reading of literature,involved
 Slovenia,43,For a basic understanding of the behavior of dogs online courses reading of literature,excitation
->>>>>>> origin/master
+>>>>>>> origin/master,,,
