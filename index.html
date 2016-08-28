@@ -149,6 +149,27 @@ var xScale1 = d3.scale.linear()
         .on("end", draw)
         .start();
 
+var wordsAsianExpert = d3.entries(asiaExpert);
+
+var xScale4 = d3.scale.linear()
+           .domain([0, d3.max(wordsAsianExpert, function(d) {
+              return d.value;
+            })
+           ])
+           .range([10,width/17]);
+// var wordsAsianExpert = buildWords(asiaExpert); 
+
+    d3.layout.cloud().size([700, 700])
+        .words(wordsAsianExpert)
+        .rotate(function() { return ~~(Math.random() * 2) * 90; })
+        .padding(10)
+        .font("Impact")
+        .spiral("archimedean")
+        .fontSize(function(d) { return xScale4(+d.value); })
+        .text(function(d) { return d.key; })
+        .on("end", draw)
+        .start();
+
 
 var wordsAmericanNonExpert = d3.entries(americaNonExpert);
 
@@ -168,52 +189,6 @@ var xScale2 = d3.scale.linear()
         .font("Impact")
         .spiral("archimedean")
         .fontSize(function(d) { return xScale2(+d.value); })
-        .text(function(d) { return d.key; })
-        .on("end", draw)
-        .start();
-
-
-var wordsEuropeNonExpert = d3.entries(europeNonExpert);
-
-var xScale3 = d3.scale.linear()
-           .domain([0, d3.max(wordsEuropeNonExpert, function(d) {
-              return d.value;
-            })
-           ])
-           .range([10,width/17]);
-
- //var wordsEuropeNonExpert = buildWords(europeNonExpert); 
-
-    d3.layout.cloud().size([700, 700])
-        .words(wordsEuropeNonExpert)
-        .rotate(function() { return ~~(Math.random() * 2) * 90; })
-        .padding(10)
-        .font("Impact")
-        .spiral("archimedean")
-        .fontSize(function(d) { return xScale3(+d.value); })
-        .text(function(d) { return d.key; })
-        .on("end", draw)
-        .start();
-
-
-
-var wordsAsianExpert = d3.entries(asiaExpert);
-
-var xScale4 = d3.scale.linear()
-           .domain([0, d3.max(wordsAsianExpert, function(d) {
-              return d.value;
-            })
-           ])
-           .range([10,width/17]);
-// var wordsAsianExpert = buildWords(asiaExpert); 
-
-    d3.layout.cloud().size([700, 700])
-        .words(wordsAsianExpert)
-        .rotate(function() { return ~~(Math.random() * 2) * 90; })
-        .padding(10)
-        .font("Impact")
-        .spiral("archimedean")
-        .fontSize(function(d) { return xScale4(+d.value); })
         .text(function(d) { return d.key; })
         .on("end", draw)
         .start();
@@ -241,6 +216,28 @@ var xScale5 = d3.scale.linear()
         .start();
 
 
+var wordsEuropeNonExpert = d3.entries(europeNonExpert);
+
+var xScale3 = d3.scale.linear()
+           .domain([0, d3.max(wordsEuropeNonExpert, function(d) {
+              return d.value;
+            })
+           ])
+           .range([10,width/17]);
+
+ //var wordsEuropeNonExpert = buildWords(europeNonExpert); 
+
+    d3.layout.cloud().size([700, 700])
+        .words(wordsEuropeNonExpert)
+        .rotate(function() { return ~~(Math.random() * 2) * 90; })
+        .padding(10)
+        .font("Impact")
+        .spiral("archimedean")
+        .fontSize(function(d) { return xScale3(+d.value); })
+        .text(function(d) { return d.key; })
+        .on("end", draw)
+        .start();
+        
 var wordsEuropeExpert = d3.entries(europeExpert);
 
 var xScale6 = d3.scale.linear()
