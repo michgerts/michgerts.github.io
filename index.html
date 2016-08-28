@@ -9,7 +9,7 @@
 <div>
 <h4>Research results: </h4>
 <div id="cloud" >
-
+	
 </div>
 </div>
 
@@ -28,16 +28,30 @@ var americaNonExpert = {};
 
 
 var countriesContinents = {};
-countriesContinents["USA"] = "America";
-countriesContinents["Russia"] = "Asia";
-countriesContinents["Israel"] = "Asia";
-countriesContinents["RF"] = "Asia";
-countriesContinents["Finland"] = "Europe";
-countriesContinents["Norway"] = "Europe";
-countriesContinents["Estonia"] = "Europe";
-countriesContinents["Belarus"] = "Europe";
-countriesContinents["Latvia"] = "Europe";
-countriesContinents["Republic of Belarus"] = "Europe";
+countriesContinents["usa"] = "America";
+countriesContinents["canada"] = "America";
+countriesContinents["mexico"] = "America";
+countriesContinents["lc"] = "America";
+countriesContinents["israel"] = "Asia";
+countriesContinents["south korea"] = "Asia";
+countriesContinents["russia"] = "Asia";
+countriesContinents["finland"] = "Europe";
+countriesContinents["norway"] = "Europe";
+countriesContinents["estonia"] = "Europe";
+countriesContinents["belarus"] = "Europe";
+countriesContinents["latvia"] = "Europe";
+countriesContinents["cloveniya"] = "Europe";
+countriesContinents["republic of belarus"] = "Europe";
+countriesContinents["slovenia"] = "Europe";
+countriesContinents["serbia"] = "Europe";
+countriesContinents["ukraine"] = "Asia";
+countriesContinents["austria"] = "Asia";
+countriesContinents["russian federation"] = "Asia";
+countriesContinents["moscow"] = "Asia";
+countriesContinents["russia tatarstan"] = "Asia";
+countriesContinents["the ussr"] = "Asia";
+countriesContinents["australia"] = "Australia";
+
 
 var dogResearchData = [], 
     width = 500, 
@@ -57,6 +71,7 @@ d3.csv("output.csv", function(data) {
 
 for (var i=0; i < dogResearchData.length; i++)  {
     var d = dogResearchData[i];
+    d.location  = d.location.toLowerCase();
     if(d.location in countriesContinents)//if this word already exists
         {
             if(countriesContinents[d.location]  == "America")
@@ -123,9 +138,9 @@ var xScale = d3.scale.linear()
            ])
            .range([10,100]);
 
-    d3.layout.cloud().size([500, 500])
+    d3.layout.cloud().size([700, 700])
         .words(wordsAsianNonExpert)
-       // .rotate(function() { return ~~(Math.random() * 2) * 90; })
+        .rotate(function() { return ~~(Math.random() * 2) * 90; })
         .padding(10)
         .font("Impact")
         .spiral("archimedean")
@@ -146,9 +161,9 @@ var xScale = d3.scale.linear()
 
  //var wordsAmericanNonExpert = buildWords(americaNonExpert); 
 
-    d3.layout.cloud().size([500, 500])
+    d3.layout.cloud().size([700, 700])
         .words(wordsAmericanNonExpert)
-       // .rotate(function() { return ~~(Math.random() * 2) * 90; })
+        .rotate(function() { return ~~(Math.random() * 2) * 90; })
         .padding(10)
         .font("Impact")
         .spiral("archimedean")
@@ -169,9 +184,9 @@ var xScale = d3.scale.linear()
 
  //var wordsEuropeNonExpert = buildWords(europeNonExpert); 
 
-    d3.layout.cloud().size([500, 500])
+    d3.layout.cloud().size([700, 700])
         .words(wordsEuropeNonExpert)
-       // .rotate(function() { return ~~(Math.random() * 2) * 90; })
+        .rotate(function() { return ~~(Math.random() * 2) * 90; })
         .padding(10)
         .font("Impact")
         .spiral("archimedean")
@@ -192,9 +207,9 @@ var xScale = d3.scale.linear()
            .range([10,100]);
 // var wordsAsianExpert = buildWords(asiaExpert); 
 
-    d3.layout.cloud().size([500, 500])
+    d3.layout.cloud().size([700, 700])
         .words(wordsAsianExpert)
-       // .rotate(function() { return ~~(Math.random() * 2) * 90; })
+        .rotate(function() { return ~~(Math.random() * 2) * 90; })
         .padding(10)
         .font("Impact")
         .spiral("archimedean")
@@ -214,9 +229,9 @@ var xScale = d3.scale.linear()
 
  //var wordsAmericanExpert = buildWords(americaExpert); 
 
-    d3.layout.cloud().size([500, 500])
+    d3.layout.cloud().size([700, 700])
         .words(wordsAmericanExpert)
-       // .rotate(function() { return ~~(Math.random() * 2) * 90; })
+        .rotate(function() { return ~~(Math.random() * 2) * 90; })
         .padding(10)
         .font("Impact")
         .spiral("archimedean")
@@ -236,9 +251,9 @@ var xScale = d3.scale.linear()
            .range([10,100]);
 // var wordsEuropeExpert = buildWords(europeExpert); 
 
-    d3.layout.cloud().size([500, 500])
+    d3.layout.cloud().size([700, 700])
         .words(wordsEuropeExpert)
-       // .rotate(function() { return ~~(Math.random() * 2) * 90; })
+        .rotate(function() { return ~~(Math.random() * 2) * 90; })
         .padding(10)
         .font("Impact")
         .spiral("archimedean")
@@ -251,10 +266,10 @@ var xScale = d3.scale.linear()
 
 function draw(words) {
 d3.select("#cloud").append("svg")
-    .attr("width", 500)
-    .attr("height", 500)
+    .attr("width", 700)
+    .attr("height", 700)
     .append("g")
-    .attr("transform", "translate(" + [500 >> 1, 500 >> 1] + ")")
+    .attr("transform", "translate(" + [700 >> 1, 700 >> 1] + ")")
     .selectAll("text")
     .data(words)
     .enter().append("text")
@@ -309,10 +324,10 @@ d3.select("#cloud").append("svg")
 
 function draw4(words) {
 d3.select("#cloud").append("svg")
-    .attr("width", 500)
-    .attr("height", 500)
+    .attr("width", 700)
+    .attr("height", 700)
     .append("g")
-    .attr("transform", "translate(" + [500 >> 1, 500 >> 1] + ")")
+    .attr("transform", "translate(" + [700 >> 1, 700 >> 1] + ")")
     .selectAll("text")
     .data(words)
     .enter().append("text")
