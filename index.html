@@ -131,7 +131,7 @@ for (var i=0; i < dogResearchData.length; i++)  {
 
 var wordsAsianNonExpert = d3.entries(asiaNonExpert);
 
-var xScale = d3.scale.linear()
+var xScale1 = d3.scale.linear()
            .domain([0, d3.max(wordsAsianNonExpert, function(d) {
               return d.value;
             })
@@ -144,7 +144,7 @@ var xScale = d3.scale.linear()
         .padding(10)
         .font("Impact")
         .spiral("archimedean")
-        .fontSize(function(d) { return xScale(+d.value); })
+        .fontSize(function(d) { return xScale1(+d.value); })
         .text(function(d) { return d.key; })
         .on("end", draw)
         .start();
@@ -152,7 +152,7 @@ var xScale = d3.scale.linear()
 
 var wordsAmericanNonExpert = d3.entries(americaNonExpert);
 
-var xScale = d3.scale.linear()
+var xScale2 = d3.scale.linear()
            .domain([0, d3.max(wordsAmericanNonExpert, function(d) {
               return d.value;
             })
@@ -167,7 +167,7 @@ var xScale = d3.scale.linear()
         .padding(10)
         .font("Impact")
         .spiral("archimedean")
-        .fontSize(function(d) { return xScale(+d.value); })
+        .fontSize(function(d) { return xScale2(+d.value); })
         .text(function(d) { return d.key; })
         .on("end", draw2)
         .start();
@@ -175,7 +175,7 @@ var xScale = d3.scale.linear()
 
 var wordsEuropeNonExpert = d3.entries(europeNonExpert);
 
-var xScale = d3.scale.linear()
+var xScale3 = d3.scale.linear()
            .domain([0, d3.max(wordsEuropeNonExpert, function(d) {
               return d.value;
             })
@@ -190,7 +190,7 @@ var xScale = d3.scale.linear()
         .padding(10)
         .font("Impact")
         .spiral("archimedean")
-        .fontSize(function(d) { return xScale(+d.value); })
+        .fontSize(function(d) { return xScale3(+d.value); })
         .text(function(d) { return d.key; })
         .on("end", draw3)
         .start();
@@ -199,7 +199,7 @@ var xScale = d3.scale.linear()
 
 var wordsAsianExpert = d3.entries(asiaExpert);
 
-var xScale = d3.scale.linear()
+var xScale4 = d3.scale.linear()
            .domain([0, d3.max(wordsAsianExpert, function(d) {
               return d.value;
             })
@@ -213,14 +213,14 @@ var xScale = d3.scale.linear()
         .padding(10)
         .font("Impact")
         .spiral("archimedean")
-        .fontSize(function(d) { return xScale(+d.value); })
+        .fontSize(function(d) { return xScale4(+d.value); })
         .text(function(d) { return d.key; })
         .on("end", draw4)
         .start();
 
 var wordsAmericanExpert = d3.entries(americaExpert);
 
-var xScale = d3.scale.linear()
+var xScale5 = d3.scale.linear()
            .domain([0, d3.max(wordsAmericanExpert, function(d) {
               return d.value;
             })
@@ -235,7 +235,7 @@ var xScale = d3.scale.linear()
         .padding(10)
         .font("Impact")
         .spiral("archimedean")
-        .fontSize(function(d) { return xScale(+d.value); })
+        .fontSize(function(d) { return xScale5(+d.value); })
         .text(function(d) { return d.key; })
         .on("end", draw5)
         .start();
@@ -243,7 +243,7 @@ var xScale = d3.scale.linear()
 
 var wordsEuropeExpert = d3.entries(europeExpert);
 
-var xScale = d3.scale.linear()
+var xScale6 = d3.scale.linear()
            .domain([0, d3.max(wordsEuropeExpert, function(d) {
               return d.value;
             })
@@ -257,7 +257,7 @@ var xScale = d3.scale.linear()
         .padding(10)
         .font("Impact")
         .spiral("archimedean")
-        .fontSize(function(d) { return xScale(+d.value); })
+        .fontSize(function(d) { return xScale6(+d.value); })
         .text(function(d) { return d.key; })
         .on("end", draw6)
         .start();
@@ -286,10 +286,10 @@ d3.select("#cloud").append("svg")
 
 function draw2(words) {
 d3.select("#cloud").append("svg")
-    .attr("width", 500)
-    .attr("height", 500)
+    .attr("width", 700)
+    .attr("height", 700)
     .append("g")
-    .attr("transform", "translate(" + [500 >> 1, 500 >> 1] + ")")
+    .attr("transform", "translate(" + [700 >> 1, 700 >> 1] + ")")
     .selectAll("text")
     .data(words)
     .enter().append("text")
@@ -305,10 +305,10 @@ d3.select("#cloud").append("svg")
 
 function draw3(words) {
 d3.select("#cloud").append("svg")
-    .attr("width", 500)
-    .attr("height", 500)
+    .attr("width", 700)
+    .attr("height", 700)
     .append("g")
-    .attr("transform", "translate(" + [500 >> 1, 500 >> 1] + ")")
+    .attr("transform", "translate(" + [700 >> 1, 700 >> 1] + ")")
     .selectAll("text")
     .data(words)
     .enter().append("text")
@@ -343,10 +343,10 @@ d3.select("#cloud").append("svg")
 
 function draw5(words) {
 d3.select("#cloud").append("svg")
-    .attr("width", 500)
-    .attr("height", 500)
+    .attr("width", 700)
+    .attr("height", 700)
     .append("g")
-    .attr("transform", "translate(" + [500 >> 1, 500 >> 1] + ")")
+    .attr("transform", "translate(" + [700 >> 1, 700 >> 1] + ")")
     .selectAll("text")
     .data(words)
     .enter().append("text")
@@ -362,10 +362,10 @@ d3.select("#cloud").append("svg")
 
 function draw6(words) {
 d3.select("#cloud").append("svg")
-    .attr("width", 500)
-    .attr("height", 500)
+    .attr("width", 700)
+    .attr("height", 700)
     .append("g")
-    .attr("transform", "translate(" + [500 >> 1, 500 >> 1] + ")")
+    .attr("transform", "translate(" + [700 >> 1, 700 >> 1] + ")")
     .selectAll("text")
     .data(words)
     .enter().append("text")
