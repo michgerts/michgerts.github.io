@@ -32,9 +32,6 @@ countriesContinents["usa"] = "America";
 countriesContinents["canada"] = "America";
 countriesContinents["mexico"] = "America";
 countriesContinents["lc"] = "America";
-countriesContinents["israel"] = "Asia";
-countriesContinents["south korea"] = "Asia";
-countriesContinents["russia"] = "Asia";
 countriesContinents["finland"] = "Europe";
 countriesContinents["norway"] = "Europe";
 countriesContinents["estonia"] = "Europe";
@@ -46,16 +43,19 @@ countriesContinents["slovenia"] = "Europe";
 countriesContinents["serbia"] = "Europe";
 countriesContinents["ukraine"] = "Asia";
 countriesContinents["austria"] = "Asia";
+countriesContinents["israel"] = "Asia";
+countriesContinents["south korea"] = "Asia";
+countriesContinents["russia"] = "Asia";
 countriesContinents["russian federation"] = "Asia";
 countriesContinents["moscow"] = "Asia";
 countriesContinents["russia tatarstan"] = "Asia";
 countriesContinents["the ussr"] = "Asia";
 countriesContinents["australia"] = "Australia";
 
+var height = window.innerHeight;
+var width = window.innerWidth;
 
-var dogResearchData = [], 
-    width = 500, 
-    height = 500;
+var dogResearchData = [];
 var forbbidenWords = ["a","and","then","with","on","the","it","he","or","in","to","she","-","do","does","his","are","for", "is", "by", "at", "what", "of",
 "be", "as", "but"];
 d3.csv("output.csv", function(data) {
@@ -136,7 +136,7 @@ var xScale1 = d3.scale.linear()
               return d.value;
             })
            ])
-           .range([10,100]);
+           .range([10,width/17]);
 
     d3.layout.cloud().size([700, 700])
         .words(wordsAsianNonExpert)
@@ -157,7 +157,7 @@ var xScale2 = d3.scale.linear()
               return d.value;
             })
            ])
-           .range([10,100]);
+           .range([10,width/17]);
 
  //var wordsAmericanNonExpert = buildWords(americaNonExpert); 
 
@@ -169,7 +169,7 @@ var xScale2 = d3.scale.linear()
         .spiral("archimedean")
         .fontSize(function(d) { return xScale2(+d.value); })
         .text(function(d) { return d.key; })
-        .on("end", draw2)
+        .on("end", draw)
         .start();
 
 
@@ -180,7 +180,7 @@ var xScale3 = d3.scale.linear()
               return d.value;
             })
            ])
-           .range([10,100]);
+           .range([10,width/17]);
 
  //var wordsEuropeNonExpert = buildWords(europeNonExpert); 
 
@@ -192,7 +192,7 @@ var xScale3 = d3.scale.linear()
         .spiral("archimedean")
         .fontSize(function(d) { return xScale3(+d.value); })
         .text(function(d) { return d.key; })
-        .on("end", draw3)
+        .on("end", draw)
         .start();
 
 
@@ -204,7 +204,7 @@ var xScale4 = d3.scale.linear()
               return d.value;
             })
            ])
-           .range([10,100]);
+           .range([10,width/17]);
 // var wordsAsianExpert = buildWords(asiaExpert); 
 
     d3.layout.cloud().size([700, 700])
@@ -215,7 +215,7 @@ var xScale4 = d3.scale.linear()
         .spiral("archimedean")
         .fontSize(function(d) { return xScale4(+d.value); })
         .text(function(d) { return d.key; })
-        .on("end", draw4)
+        .on("end", draw)
         .start();
 
 var wordsAmericanExpert = d3.entries(americaExpert);
@@ -225,7 +225,7 @@ var xScale5 = d3.scale.linear()
               return d.value;
             })
            ])
-           .range([10,100]);
+           .range([10,width/17]);
 
  //var wordsAmericanExpert = buildWords(americaExpert); 
 
@@ -237,7 +237,7 @@ var xScale5 = d3.scale.linear()
         .spiral("archimedean")
         .fontSize(function(d) { return xScale5(+d.value); })
         .text(function(d) { return d.key; })
-        .on("end", draw5)
+        .on("end", draw)
         .start();
 
 
@@ -248,7 +248,7 @@ var xScale6 = d3.scale.linear()
               return d.value;
             })
            ])
-           .range([10,100]);
+           .range([10,width/17]);
 // var wordsEuropeExpert = buildWords(europeExpert); 
 
     d3.layout.cloud().size([700, 700])
@@ -259,17 +259,17 @@ var xScale6 = d3.scale.linear()
         .spiral("archimedean")
         .fontSize(function(d) { return xScale6(+d.value); })
         .text(function(d) { return d.key; })
-        .on("end", draw6)
+        .on("end", draw)
         .start();
 
 });
 
 function draw(words) {
 d3.select("#cloud").append("svg")
-    .attr("width", 700)
+    .attr("width", (width/2 - 20))
     .attr("height", 700)
     .append("g")
-    .attr("transform", "translate(" + [700 >> 1, 700 >> 1] + ")")
+    .attr("transform", "translate(" + [(width/2 - 20) >> 1, 700 >> 1] + ")")
     .selectAll("text")
     .data(words)
     .enter().append("text")
@@ -284,100 +284,6 @@ d3.select("#cloud").append("svg")
 }   
 
 
-function draw2(words) {
-d3.select("#cloud").append("svg")
-    .attr("width", 700)
-    .attr("height", 700)
-    .append("g")
-    .attr("transform", "translate(" + [700 >> 1, 700 >> 1] + ")")
-    .selectAll("text")
-    .data(words)
-    .enter().append("text")
-    .style("font-size", function(d) { return d.size + "px"; })
-    .style("font-family", "Impact")
-    .style("fill", function(d, i) { return fill(i); })
-    .attr("text-anchor", "middle")
-    .attr("transform", function(d) {
-        return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
-    })
-    .text(function(d) { return d.text; });
-}   
-
-function draw3(words) {
-d3.select("#cloud").append("svg")
-    .attr("width", 700)
-    .attr("height", 700)
-    .append("g")
-    .attr("transform", "translate(" + [700 >> 1, 700 >> 1] + ")")
-    .selectAll("text")
-    .data(words)
-    .enter().append("text")
-    .style("font-size", function(d) { return d.size + "px"; })
-    .style("font-family", "Impact")
-    .style("fill", function(d, i) { return fill(i); })
-    .attr("text-anchor", "middle")
-    .attr("transform", function(d) {
-        return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
-    })
-    .text(function(d) { return d.text; });
-}   
-
-function draw4(words) {
-d3.select("#cloud").append("svg")
-    .attr("width", 700)
-    .attr("height", 700)
-    .append("g")
-    .attr("transform", "translate(" + [700 >> 1, 700 >> 1] + ")")
-    .selectAll("text")
-    .data(words)
-    .enter().append("text")
-    .style("font-size", function(d) { return d.size + "px"; })
-    .style("font-family", "Impact")
-    .style("fill", function(d, i) { return fill(i); })
-    .attr("text-anchor", "middle")
-    .attr("transform", function(d) {
-        return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
-    })
-    .text(function(d) { return d.text; });
-}   
-
-function draw5(words) {
-d3.select("#cloud").append("svg")
-    .attr("width", 700)
-    .attr("height", 700)
-    .append("g")
-    .attr("transform", "translate(" + [700 >> 1, 700 >> 1] + ")")
-    .selectAll("text")
-    .data(words)
-    .enter().append("text")
-    .style("font-size", function(d) { return d.size + "px"; })
-    .style("font-family", "Impact")
-    .style("fill", function(d, i) { return fill(i); })
-    .attr("text-anchor", "middle")
-    .attr("transform", function(d) {
-        return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
-    })
-    .text(function(d) { return d.text; });
-}   
-
-function draw6(words) {
-d3.select("#cloud").append("svg")
-    .attr("width", 700)
-    .attr("height", 700)
-    .append("g")
-    .attr("transform", "translate(" + [700 >> 1, 700 >> 1] + ")")
-    .selectAll("text")
-    .data(words)
-    .enter().append("text")
-    .style("font-size", function(d) { return d.size + "px"; })
-    .style("font-family", "Impact")
-    .style("fill", function(d, i) { return fill(i); })
-    .attr("text-anchor", "middle")
-    .attr("transform", function(d) {
-        return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
-    })
-    .text(function(d) { return d.text; });
-}   
 
 function buildWords(wordsHash){
 var words = [];
