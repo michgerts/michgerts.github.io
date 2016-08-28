@@ -25,6 +25,8 @@ var europeExpert = {};
 var europeNonExpert = {};
 var americaExpert = {};
 var americaNonExpert = {};
+var australiaExpert = {};
+var australiaNonExpert = {};
 
 
 var countriesContinents = {};
@@ -123,6 +125,24 @@ for (var i=0; i < dogResearchData.length; i++)  {
                         europeExpert[d.word]++;
                     else
                         europeExpert[d.word] = 1;
+                }
+            }
+
+            else if(countriesContinents[d.location]  == "Australia")
+            {
+                if(d.education == "dog Owner")
+                {
+                    if(d.word in australiaNonExpert)
+                        australiaNonExpert[d.word]++;
+                    else
+                        australiaNonExpert[d.word] = 1;
+                }
+                else
+                {
+                    if(d.word in australiaExpert)
+                        australiaExpert[d.word]++;
+                    else
+                        australiaExpert[d.word] = 1;
                 }
             }
         }
@@ -237,7 +257,7 @@ var xScale3 = d3.scale.linear()
         .text(function(d) { return d.key; })
         .on("end", draw)
         .start();
-        
+
 var wordsEuropeExpert = d3.entries(europeExpert);
 
 var xScale6 = d3.scale.linear()
@@ -258,6 +278,48 @@ var xScale6 = d3.scale.linear()
         .text(function(d) { return d.key; })
         .on("end", draw)
         .start();
+
+ var wordsAustraliaNonExpert = d3.entries(australiaNonExpert);
+
+var xScale7 = d3.scale.linear()
+           .domain([0, d3.max(wordsAustraliaNonExpert, function(d) {
+              return d.value;
+            })
+           ])
+           .range([10,width/17]);
+
+    d3.layout.cloud().size([700, 700])
+        .words(wordsAustraliaNonExpert)
+        .rotate(function() { return ~~(Math.random() * 2) * 90; })
+        .padding(10)
+        .font("Impact")
+        .spiral("archimedean")
+        .fontSize(function(d) { return xScale7(+d.value); })
+        .text(function(d) { return d.key; })
+        .on("end", draw)
+        .start();
+
+var wordsAustraliaExpert = d3.entries(australiaExpert);
+
+var xScale8 = d3.scale.linear()
+           .domain([0, d3.max(wordsAustraliaExpert, function(d) {
+              return d.value;
+            })
+           ])
+           .range([10,width/17]);
+
+    d3.layout.cloud().size([700, 700])
+        .words(wordsAustraliaExpert)
+        .rotate(function() { return ~~(Math.random() * 2) * 90; })
+        .padding(10)
+        .font("Impact")
+        .spiral("archimedean")
+        .fontSize(function(d) { return xScale8(+d.value); })
+        .text(function(d) { return d.key; })
+        .on("end", draw)
+        .start();
+
+
 
 });
 
