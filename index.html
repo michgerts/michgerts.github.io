@@ -350,8 +350,8 @@ var xScale8 = d3.scale.linear()
 var color_scale = d3.scale.linear().domain([1, 50, 100]).range(["green", "red", "blue"]);
 
 var colorScale = d3.scale.quantize()
-    .range(colorbrewer.OrRd[8])
-    .domain([0, 100]);
+    .range(colorbrewer.YlGnBu[8])
+    .domain([100, 0]);
 
 function draw(words) {
 
