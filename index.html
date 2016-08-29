@@ -15,6 +15,7 @@
 
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="d3.layout.cloud.js"></script>
+ <script src="http://d3js.org/colorbrewer.v1.min.js"></script>
 <script type="text/javascript">
 
 var fill = d3.scale.category20();
@@ -344,9 +345,24 @@ var xScale8 = d3.scale.linear()
 
 });
 
-var color_scale = d3.scale.linear().domain([0, 100]).range(['orange', 'blue']);//max of dogResearchData.age
+
+var color_scale = d3.scale.linear().domain([1, 50, 100]).range(["green", "red", "blue"]);
+
+var colorScale = d3.scale.quantize()
+    .range(colorbrewer.OrRd[8])
+    .domain([0, 100]);
 
 function draw(words) {
+
+/*var maxAvgAge = d3.max(wordAvgAge,function(d){ return +d.value.avgAge});
+var minAvgAge = d3.min(wordAvgAge,function(d){ return +d.value.avgAge});
+var centerAvgAge = (maxAvgAge + minAvgAge)/2;
+
+
+var color = d3.scale.linear()
+    .domain([minAvgAge, centerAvgAge, maxAvgAge])
+    .range(["red", "white", "green"]);//define your gradient range colors
+    */
 
 d3.select("#cloud").append("svg")
     .attr("width", (width/2 - 20))
@@ -358,7 +374,7 @@ d3.select("#cloud").append("svg")
     .enter().append("text")
     .style("font-size", function(d) { return d.size + "px"; })
     .style("font-family", "Impact")
-    .style("fill", function(d, i) { return color_scale(wordAvgAge[d.text].avgAge); })
+    .style("fill", function(d, i) { return colorScale(wordAvgAge[d.text].avgAge); })
     .attr("text-anchor", "middle")
     .attr("transform", function(d) {
         return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
