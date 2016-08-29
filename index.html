@@ -381,9 +381,11 @@ d3.select("#cloud").append("svg")
         return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
     })
     .text(function(d) { return d.text; })
-    .on("mouseenter", function(d){d3.select(this).style("font-size", d.size + 20 +"px" )
+    .on("mouseenter", function(d){d3.select(this).style("font-size", d.size + 20 +"px" );
+        d3.select(this).style("fill", "black" );
         })
-    .on("mouseleave", function(d){d3.select(this).style("font-size", d.size +"px" )
+    .on("mouseleave", function(d){d3.select(this).style("font-size", d.size +"px" );
+        d3.select(this).style("fill", function(d, i) { return colorScale(wordAvgAge[d.text].avgAge); });
         });
 }   
 
