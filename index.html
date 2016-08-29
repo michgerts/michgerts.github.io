@@ -54,6 +54,9 @@ countriesContinents["russia tatarstan"] = "Asia";
 countriesContinents["the ussr"] = "Asia";
 countriesContinents["australia"] = "Australia";
 
+
+var wordAvgAge = {};
+
 var height = window.innerHeight;
 var width = window.innerWidth;
 
@@ -145,6 +148,22 @@ for (var i=0; i < dogResearchData.length; i++)  {
                         australiaExpert[d.word] = 1;
                 }
             }
+
+        if(d.word in wordAvgAge)
+        {
+            //var avgAge = wordAvgAge[d.word][0]+d.age;
+            //avgAge = avgAge/(wordAvgAge[d.word][1]+1);
+
+            //wordAvgAge[d.word] = {avgAge, wordAvgAge[d.word][1]+1};
+        }
+        else
+        {
+            wordAvgAge[d.word] = ({
+                avgAge: d.age,
+                peopleCounter: 1
+            });   
+        }
+
         }
         
 }
@@ -157,6 +176,7 @@ var xScale1 = d3.scale.linear()
             })
            ])
            .range([10,width/17]);
+
 
     d3.layout.cloud().size([700, 700])
         .words(wordsAsianNonExpert)
@@ -323,7 +343,10 @@ var xScale8 = d3.scale.linear()
 
 });
 
+var color_scale = d3.scale.linear().domain([0, 100]).range(['red', 'blue']);
+
 function draw(words) {
+
 d3.select("#cloud").append("svg")
     .attr("width", (width/2 - 20))
     .attr("height", 700)
@@ -334,7 +357,7 @@ d3.select("#cloud").append("svg")
     .enter().append("text")
     .style("font-size", function(d) { return d.size + "px"; })
     .style("font-family", "Impact")
-    .style("fill", function(d, i) { return fill(i); })
+    .style("fill", function(d, i) { return color_scale(wordAvgAge[d.text]); })
     .attr("text-anchor", "middle")
     .attr("transform", function(d) {
         return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
@@ -342,7 +365,10 @@ d3.select("#cloud").append("svg")
     .text(function(d) { return d.text; });
 }   
 
-
+function colors(n) {
+  var colores_g = ["#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#0099c6", "#dd4477", "#66aa00", "#b82e2e", "#316395", "#994499", "#22aa99", "#aaaa11", "#6633cc", "#e67300", "#8b0707", "#651067", "#329262", "#5574a6", "#3b3eac"];
+  return colores_g[n % colores_g.length];
+}
 
 function buildWords(wordsHash){
 var words = [];
