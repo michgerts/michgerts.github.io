@@ -152,7 +152,8 @@ for (var i=0; i < dogResearchData.length; i++)  {
 
         if(d.word in wordAvgAge)
         {
-            var avgAge = +wordAvgAge[d.word].avgAge+ +d.age;
+            var avgAge = +wordAvgAge[d.word].avgAge * +wordAvgAge[d.word].peopleCounter;
+            avgAge =  avgAge + +d.age;
             avgAge = avgAge/(wordAvgAge[d.word].peopleCounter+1);
 
             wordAvgAge[d.word].avgAge = avgAge;
