@@ -63,7 +63,7 @@ var width = window.innerWidth;
 var dogResearchData = [];
 var forbbidenWords = ["a","and","then","with","on","the","it","he","or","in","to","she","-","do","does","his","are","for", "is", "by", "at", "what", "of",
 "be", "as", "but"];
-d3.csv("output.csv", function(data) {
+d3.csv("outputNew.csv", function(data) {
     // build the list of city names
     data.forEach( function (d) {
         d.word = d.word.toLowerCase();
@@ -151,15 +151,16 @@ for (var i=0; i < dogResearchData.length; i++)  {
 
         if(d.word in wordAvgAge)
         {
-            //var avgAge = wordAvgAge[d.word][0]+d.age;
-            //avgAge = avgAge/(wordAvgAge[d.word][1]+1);
+            var avgAge = +wordAvgAge[d.word].avgAge+ +d.age;
+            avgAge = avgAge/(wordAvgAge[d.word].peopleCounter+1);
 
-            //wordAvgAge[d.word] = {avgAge, wordAvgAge[d.word][1]+1};
+            wordAvgAge[d.word].avgAge = avgAge;
+            wordAvgAge[d.word].peopleCounter = wordAvgAge[d.word].peopleCounter+1;
         }
         else
         {
             wordAvgAge[d.word] = ({
-                avgAge: d.age,
+                avgAge: +d.age,
                 peopleCounter: 1
             });   
         }
@@ -343,7 +344,7 @@ var xScale8 = d3.scale.linear()
 
 });
 
-var color_scale = d3.scale.linear().domain([0, 100]).range(['red', 'blue']);
+var color_scale = d3.scale.linear().domain([0, 100]).range(['orange', 'blue']);//max of dogResearchData.age
 
 function draw(words) {
 
@@ -357,7 +358,7 @@ d3.select("#cloud").append("svg")
     .enter().append("text")
     .style("font-size", function(d) { return d.size + "px"; })
     .style("font-family", "Impact")
-    .style("fill", function(d, i) { return color_scale(wordAvgAge[d.text]); })
+    .style("fill", function(d, i) { return color_scale(wordAvgAge[d.text].avgAge); })
     .attr("text-anchor", "middle")
     .attr("transform", function(d) {
         return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
