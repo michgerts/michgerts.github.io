@@ -351,7 +351,7 @@ var color_scale = d3.scale.linear().domain([1, 50, 100]).range(["green", "red", 
 
 var colorScale = d3.scale.quantize()
     .range(colorbrewer.YlGnBu[8])
-    .domain([100, 0]);
+    .domain([0, 100]);
 
 function draw(words) {
 
@@ -380,7 +380,11 @@ d3.select("#cloud").append("svg")
     .attr("transform", function(d) {
         return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
     })
-    .text(function(d) { return d.text; });
+    .text(function(d) { return d.text; })
+    .on("mouseenter", function(d){d3.select(this).style("font-size", d.size + 20 +"px" )
+        })
+    .on("mouseleave", function(d){d3.select(this).style("font-size", d.size +"px" )
+        });
 }   
 
 function colors(n) {
