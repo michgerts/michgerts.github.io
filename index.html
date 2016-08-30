@@ -486,7 +486,8 @@ var stemmer = (function(){
                 re = /.$/;
                 w = w.replace(re,"");
             }
-        } else if (re2.test(w)) {
+            
+        } else if (re2.test(w) && !(w.includes("succ"))) {
             var fp = re2.exec(w);
             stem = fp[1];
             re2 = new RegExp(s_v);
@@ -501,6 +502,11 @@ var stemmer = (function(){
                     { w = w + "e"; }
             }
         }
+        } else if (re2.test(w) && (w.includes("succ")))
+            {
+                w = "success";
+
+            }
 
         // Step 1c
         re = /^(.+?)y$/;
