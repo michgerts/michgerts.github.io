@@ -599,6 +599,9 @@ var stemmer = (function(){
         re0 = /^(.+?)ly$/;
         if (re0.test(w)) { w = w.replace(re0,""); }
 
+        re11 = /^over(.+?)$/;
+        if (re0.test(w)) { w = w.substr(4,w.length); }
+
         return w;
 
     }
