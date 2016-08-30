@@ -487,7 +487,7 @@ var stemmer = (function(){
                 w = w.replace(re,"");
             }
 
-        } else if (re2.test(w) && !(w.includes("succ"))) {
+        } if (re2.test(w) && !(w.includes("succ"))) {
             var fp = re2.exec(w);
             stem = fp[1];
             re2 = new RegExp(s_v);
@@ -502,7 +502,7 @@ var stemmer = (function(){
                     { w = w + "e"; }
             }
         }
-        } else if (re2.test(w) && (w.includes("succ")))
+        } else (re2.test(w) && (w.includes("succ")))
             {
                 w = "success";
 
