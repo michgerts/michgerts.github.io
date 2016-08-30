@@ -542,7 +542,7 @@ var stemmer = (function(){
             if (re.test(stem)) {
                 w = stem;
             }
-        } else if (re2.test(w)) {
+        } else if (re2.test(w) && w!=position) {
             var fp = re2.exec(w);
             stem = fp[1] + fp[2];
             re2 = new RegExp(mgr1);
@@ -582,7 +582,7 @@ var stemmer = (function(){
             w = w.concat("y");
         }
 
-        if (w.includes("excit") || w.includes("engag") || w.includes("frustrat") || w.includes("fixat") || w.includes("violat") || w.includes("courag") || w.includes("voic") || w.includes("activ"))
+        if (w.includes("excit") || w.includes("engag") || w.includes("frustrat") || w.includes("fixat") || w.includes("violat") || w.includes("courag") || w.includes("voic") || w.includes("activ")|| w.includes("imag"))
             w = w.concat("e");
 
         if (w == "viciou")
