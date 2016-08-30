@@ -63,7 +63,7 @@ var width = window.innerWidth;
 
 var dogResearchData = [];
 var forbbidenWords = ["a","and","then","with","on","the","it","he","or","in","to","she","-","do","does","his","are","for", "is", "by", "at", "what", "of","some", "not","too","every","was","such","their","has","due", "no", "nothing", "because","eate",
-"gde","be", "as", "but", "durkovato", "imho","zaiteresovana","sabak","something","if", "i", "nervoznoznost","aypada","very","pevye", "pitaetsa", "ekrnane"];
+"gde","be", "as", "but", "durkovato", "imho","zaiteresovana","sabak","something","if", "i", "nervoznoznost","aypada","very","pevye", "pitaetsa", "ekrnane", "rassterena", "vozbuzdenie", "azart", "zainteresovanna", "vozuzhdenie?"];
 d3.csv("outputNew.csv", function(data) {
     // build the list of city names
     data.forEach( function (d) {
@@ -580,6 +580,9 @@ var stemmer = (function(){
             w = w.substr(0,w.length-1);
             w = w.concat("y");
         }
+
+        if (w.includes("excit"))
+            w.concat("e");
 
         return w;
     }
