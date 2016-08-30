@@ -534,7 +534,7 @@ var stemmer = (function(){
         // Step 4
         re = /^(.+?)(al|ance|ence|er|ic|able|ible|ant|ement|ment|ent|ou|ism|ate|iti|ous|ive|ize)$/;
         re2 = /^(.+?)(s|t)(ion)$/;
-        if (re.test(w)) {
+        if (re.test(w) && w != "animal") {
             var fp = re.exec(w);
             stem = fp[1];
             re = new RegExp(mgr1);
@@ -551,7 +551,7 @@ var stemmer = (function(){
         }
 
         // Step 5
-        /*re = /^(.+?)e$/;
+        re = /^(.+?)e$/;
         if (re.test(w)) {
             var fp = re.exec(w);
             stem = fp[1];
@@ -561,7 +561,7 @@ var stemmer = (function(){
             if (re.test(stem) || (re2.test(stem) && !(re3.test(stem)))) {
                 w = stem;
             }
-        }*/
+        }
 
         re = /ll$/;
         re2 = new RegExp(mgr1);
