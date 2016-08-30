@@ -404,9 +404,9 @@ var words = [];
 return words;
 }
 
-var stemmer =function(){
-
-var exceptions = {
+var stemmer = (function()
+{
+    var exceptions = {
     skis    : 'ski'   ,
     skies   : 'sky'   ,
     dying   : 'die'   ,
@@ -567,7 +567,7 @@ module.exports = function(word){
 
     return word.toLowerCase();
 };
-}();
+})();
 
 </script>
 </body>
