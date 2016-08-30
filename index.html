@@ -588,7 +588,7 @@ var stemmer = (function(){
         re10 = /^(.+?)i$/;
         if (re10.test(w)) { 
             w = w.substr(0,w.length);
-            w.append("y");
+            w = w.concat("y");
          }
 
         re0 = /^(.+?)ly$/;
