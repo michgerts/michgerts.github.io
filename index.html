@@ -460,7 +460,7 @@ var stemmer = (function(){
             re4,
             origword = w;
 
-        w.rep("?","");
+        w.replace("?","");
         if (w.length < 3) { return w; }
 
         firstch = w.substr(0,1);
