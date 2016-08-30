@@ -71,10 +71,6 @@ var height = window.innerHeight;
 var width = window.innerWidth;
 
 var dogResearchData = [];
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> origin/master
 var forbbidenWords = ["a","and","then","with","on","the","it","he","or","in","to","she","-","do","does","his","are","for", "is", "by", "at", "what", "of",
 "be", "as", "but"];
 
@@ -83,29 +79,18 @@ function loadFunc()
 {
     if(document.getElementById("firstTab").className == "active")
     {
-<<<<<<< HEAD
         $(cloudNum).html("");
         cloudNum = "#cloud1";
-=======
-        cloudNum = "#cloud1";
-        $(cloudNum).html("");
->>>>>>> origin/master
         fileName = "outputNew.csv";
     }
     else
     {
-<<<<<<< HEAD
         $(cloudNum).html("");
         fileName = "output2final.csv";
-=======
-        fileName = "output2final.csv";
-        $(cloudNum).html("");
->>>>>>> origin/master
         cloudNum = "#cloud2";
     }
     
     loadCloud(fileName);
-<<<<<<< HEAD
     
 }
 
@@ -130,8 +115,6 @@ function afterDrawing() {
         elements[i].setAttribute("style", "border-style: groove;border-radius: 10px;border-color:"+color+";border-width: 4px;"); 
     }
     $('[data-toggle="tooltip"]').tooltip();
-=======
->>>>>>> origin/master
 }
 
 
@@ -141,7 +124,6 @@ $(document).on( 'shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
 });
 
 function loadCloud(fileName) {
-<<<<<<< HEAD
 
 var asiaExpert = {};
 var asiaNonExpert = {};
@@ -155,15 +137,6 @@ wordAvgAge = {};
 dogResearchData = [];
 
 d3.csv(fileName, function(data) {
-=======
-d3.csv(fileName, function(data) {
-=======
-var forbbidenWords = ["a","and","then","with","on","the","it","he","or","in","to","she","-","do","does","his","are","for", "is", "by", "at", "what", "of","some", "not","too","every","was","such","their","has","due", "no", "nothing", "because","eate",
-"gde","be", "as", "but", "durkovato", "imho","zaiteresovana","sabak","something","if", "i", "nervoznoznost","aypada","very","pevye", "pitaetsa", "ekrnane", "rassterena", "vozbuzdenie", "azart", "zainteresovanna", "vozuzhdenie?", "gadzhitov!", 
-"poimat"];
-d3.csv("outputNew.csv", function(data) {
->>>>>>> 03b7657a86ba9ca75f6af41414e5b7daf35578a8
->>>>>>> origin/master
     // build the list of city names
     data.forEach( function (d) {
         d.word = d.word.toLowerCase();
