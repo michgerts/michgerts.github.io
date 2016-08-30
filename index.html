@@ -74,7 +74,7 @@ countriesContinents["australia"] = "Australia";
 var wordAvgAge = {};
 
 var fileName;
-var cloudNum;
+var cloudNum = "#cloud1";
 
 var height = window.innerHeight;
 var width = window.innerWidth;
@@ -89,11 +89,13 @@ function loadFunc()
     if(document.getElementById("firstTab").className == "active")
     {
         cloudNum = "#cloud1";
+        $(cloudNum).html("");
         fileName = "outputNew.csv";
     }
     else
     {
         fileName = "output2final.csv";
+        $(cloudNum).html("");
         cloudNum = "#cloud2";
     }
     
