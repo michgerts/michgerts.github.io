@@ -427,7 +427,6 @@ var stemmer = (function(){
             "iviti" : "ive",
             "biliti" : "ble",
             "logi" : "log"
-
         },
 
         step3list = {
@@ -461,7 +460,6 @@ var stemmer = (function(){
             origword = w;
 
         if (w.length < 3) { return w; }
-        w = w.replace("?","");
 
         firstch = w.substr(0,1);
         if (firstch == "y") {
@@ -469,12 +467,11 @@ var stemmer = (function(){
         }
 
         // Step 1a
-        
         re = /^(.+?)(ss|i)es$/;
         re2 = /^(.+?)([^s])s$/;
 
         if (re.test(w)) { w = w.replace(re,"$1$2"); }
-        else if (re2.test(w) && w!= "nervous") { w = w.replace(re2,"$1$2"); }
+        else if (re2.test(w)) { w = w.replace(re2,"$1$2"); }
 
         // Step 1b
         re = /^(.+?)eed$/;
@@ -486,8 +483,7 @@ var stemmer = (function(){
                 re = /.$/;
                 w = w.replace(re,"");
             }
-
-        } if (re2.test(w) && !(w.includes("succ"))) {
+        } else if (re2.test(w)) {
             var fp = re2.exec(w);
             stem = fp[1];
             re2 = new RegExp(s_v);
@@ -498,14 +494,9 @@ var stemmer = (function(){
                 re4 = new RegExp("^" + C + v + "[^aeiouwxy]$");
                 if (re2.test(w)) {  w = w + "e"; }
                 else if (re3.test(w)) { re = /.$/; w = w.replace(re,""); }
-                else if (re4.test(w)) 
-                    { w = w + "e"; }
+                else if (re4.test(w)) { w = w + "e"; }
             }
         }
-        else if (re2.test(w) && (w.includes("succ")))
-        {
-                w = "success";
-            }
 
         // Step 1c
         re = /^(.+?)y$/;
@@ -513,10 +504,10 @@ var stemmer = (function(){
             var fp = re.exec(w);
             stem = fp[1];
             re = new RegExp(s_v);
-            if (re.test(stem)) { w = stem + "y"; }
+            if (re.test(stem)) { w = stem + "i"; }
         }
 
-        //Step 2
+        // Step 2
         re = /^(.+?)(ational|tional|enci|anci|izer|bli|alli|entli|eli|ousli|ization|ation|ator|alism|iveness|fulness|ousness|aliti|iviti|biliti|logi)$/;
         if (re.test(w)) {
             var fp = re.exec(w);
@@ -541,36 +532,36 @@ var stemmer = (function(){
         }
 
         // Step 4
-        re = /^(.+?)(al|ance|ence|er|ic|able|ible|ant|ement|ment|ent|ou|ism|ate|iti|ous|ize)$/;
-        //re2 = /^(.+?)(s|t)(ion)$/;
-        if (re.test(w) && w != "animal" && w != "wallpaper" && w != "available") {
+        re = /^(.+?)(al|ance|ence|er|ic|able|ible|ant|ement|ment|ent|ou|ism|ate|iti|ous|ive|ize)$/;
+        re2 = /^(.+?)(s|t)(ion)$/;
+        if (re.test(w)) {
             var fp = re.exec(w);
             stem = fp[1];
             re = new RegExp(mgr1);
             if (re.test(stem)) {
                 w = stem;
             }
-        } /*else if (re2.test(w)) {
+        } else if (re2.test(w)) {
             var fp = re2.exec(w);
             stem = fp[1] + fp[2];
             re2 = new RegExp(mgr1);
             if (re2.test(stem)) {
                 w = stem;
             }
-        }*/
+        }
 
         // Step 5
-        /*re = /^(.+?)e$/;
+        re = /^(.+?)e$/;
         if (re.test(w)) {
             var fp = re.exec(w);
             stem = fp[1];
             re = new RegExp(mgr1);
             re2 = new RegExp(meq1);
             re3 = new RegExp("^" + C + v + "[^aeiouwxy]$");
-            if (/*re.test(stem) ||(re2.test(stem) && !(re3.test(stem)))) {
-                //w = stem;
-           // }
-        //}*/
+            if (re.test(stem) || (re2.test(stem) && !(re3.test(stem)))) {
+                w = stem;
+            }
+        }
 
         re = /ll$/;
         re2 = new RegExp(mgr1);
@@ -585,25 +576,7 @@ var stemmer = (function(){
             w = firstch.toLowerCase() + w.substr(1);
         }
 
-        if(w.includes("excit"))
-        {
-            w = w + 'e';
-        }
-
-        re10 = /^(.+?)i$/;
-        if (re10.test(w)) { 
-            w = w.substr(0,w.length-1);
-            w = w.concat("y");
-         }
-
-        re0 = /^(.+?)ly$/;
-        if (re0.test(w)) { w = w.replace(re0,""); }
-
-        re11 = /^over(.+?)$/;
-        if (re11.test(w)) { w = w.substr(4,w.length); }
-
         return w;
-
     }
 })();
 
