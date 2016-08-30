@@ -71,7 +71,7 @@ var height = window.innerHeight;
 var width = window.innerWidth;
 
 var dogResearchData = [];
-var forbbidenWords = ["a","and","then","with","on","the","it","he","or","in","to","she","-","do","does","his","are","for", "is", "by", "at", "what", "of",
+var forbbidenWords = ["a","and","then","with","on","the","it","he","or","in","to","she","-","do","does","his","are","for", "is", "by", "at", "what", "of", "zalipla",
 "be", "as", "but"];
 
 
@@ -140,7 +140,7 @@ d3.csv(fileName, function(data) {
     // build the list of city names
     data.forEach( function (d) {
         d.word = d.word.toLowerCase();
-        if (forbbidenWords.indexOf(d.word) == -1 )
+        if (forbbidenWords.indexOf(d.word) == -1  && !d.word.includes("'"))
         {
             d.word = stemmer(d.word);
             dogResearchData.push({word: d.word, location: d.location, education: d.education, age : d.age});
