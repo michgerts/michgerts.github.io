@@ -63,7 +63,7 @@ var width = window.innerWidth;
 
 var dogResearchData = [];
 var forbbidenWords = ["a","and","then","with","on","the","it","he","or","in","to","she","-","do","does","his","are","for", "is", "by", "at", "what", "of","some", "not","too","every","was","such","their","has","due",
-"be", "as", "but", "durkovato", "imho","zaiteresovana",];
+"be", "as", "but", "durkovato", "imho","zaiteresovana","sabak","something","if", "i"];
 d3.csv("outputNew.csv", function(data) {
     // build the list of city names
     data.forEach( function (d) {
@@ -486,7 +486,7 @@ var stemmer = (function(){
                 re = /.$/;
                 w = w.replace(re,"");
             }
-            
+
         } else if (re2.test(w) && !(w.includes("succ"))) {
             var fp = re2.exec(w);
             stem = fp[1];
@@ -593,7 +593,7 @@ var stemmer = (function(){
 
         re10 = /^(.+?)i$/;
         if (re10.test(w)) { 
-            w = w.substr(0,w.length);
+            w = w.substr(0,w.length-1);
             w = w.concat("y");
          }
 
