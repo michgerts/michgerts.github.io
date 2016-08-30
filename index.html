@@ -471,6 +471,28 @@ Word.prototype.R1_match = function(regex) {
 
   return ret;
 }
+
+
+Word.prototype.R2_match = function(regex) {
+  var ret = this.decompose()._R2.match(regex);
+
+  if(ret !== null) {
+    ret.index += this._R2_index;
+    ret.input = this.word;
+  }
+
+  return ret;
+}
+
+Word.prototype.R1_replace = function(a, b) {
+  this._R1 = this.decompose()._R1.replace(a, b);
+  return this.recompose();
+}
+
+Word.prototype.R2_replace = function(a, b) {
+  this._R2 = this.decompose()._R2.replace(a, b);
+  return this.recompose();
+}
   }
   );
 
