@@ -5,17 +5,32 @@
   <title>D3 CSV</title>
 
 </head>
-<body>
-<div>
-<h4>Research results: </h4>
-<div id="cloud" >
-	
+<body onload="loadFunc()">
+
+<div class="container">
+  <h3>Research results</h3>
+  <ul class="nav nav-tabs">
+    <li  id= "firstTab" class="active"><a data-toggle="tab" href="#cloud1">First video</a></li>
+    <li  id= "secondTab"><a data-toggle="tab" href="#cloud2">Second video</a></li>
+  </ul>
+  <br>
 </div>
+
+<div class="tab-content">
+    <div id="cloud1" class="tab-pane fade in active">
+    	
+    </div>
+    <div id="cloud2" class="tab-pane fade" >
+        
+    </div>
 </div>
 
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script src="d3.layout.cloud.js"></script>
- <script src="http://d3js.org/colorbrewer.v1.min.js"></script>
+<script src="http://d3js.org/colorbrewer.v1.min.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 
 var fill = d3.scale.category20();
@@ -58,13 +73,41 @@ countriesContinents["australia"] = "Australia";
 
 var wordAvgAge = {};
 
+var fileName;
+var cloudNum;
+
 var height = window.innerHeight;
 var width = window.innerWidth;
 
 var dogResearchData = [];
 var forbbidenWords = ["a","and","then","with","on","the","it","he","or","in","to","she","-","do","does","his","are","for", "is", "by", "at", "what", "of",
 "be", "as", "but"];
-d3.csv("outputNew.csv", function(data) {
+
+
+function loadFunc()
+{
+    if(document.getElementById("firstTab").className == "active")
+    {
+        cloudNum = "#cloud1";
+        fileName = "outputNew.csv";
+    }
+    else
+    {
+        fileName = "output2final.csv";
+        cloudNum = "#cloud2";
+    }
+    
+    loadCloud(fileName);
+}
+
+
+$(document).on( 'shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
+  var target = $(e.target).attr("href") // activated tab
+  loadFunc();
+});
+
+function loadCloud(fileName) {
+d3.csv(fileName, function(data) {
     // build the list of city names
     data.forEach( function (d) {
         d.word = d.word.toLowerCase();
@@ -345,6 +388,7 @@ var xScale8 = d3.scale.linear()
 
 
 });
+}
 
 
 var color_scale = d3.scale.linear().domain([1, 50, 100]).range(["green", "red", "blue"]);
@@ -365,7 +409,7 @@ var color = d3.scale.linear()
     .range(["red", "white", "green"]);//define your gradient range colors
     */
 
-d3.select("#cloud").append("svg")
+d3.select(cloudNum).append("svg")
     .attr("width", (width/2 - 20))
     .attr("height", 700)
     .append("g")
@@ -383,16 +427,14 @@ d3.select("#cloud").append("svg")
     .text(function(d) { return d.text; })
     .on("mouseenter", function(d){d3.select(this).style("font-size", d.size + 20 +"px" );
         d3.select(this).style("fill", "black" );
+        d3.select("transform", "translate(" + [(width/2 - 20) >> 1, 700 >> 1] + ")rotate(0)");
         })
     .on("mouseleave", function(d){d3.select(this).style("font-size", d.size +"px" );
         d3.select(this).style("fill", function(d, i) { return colorScale(wordAvgAge[d.text].avgAge); });
         });
 }   
 
-function colors(n) {
-  var colores_g = ["#3366cc", "#dc3912", "#ff9900", "#109618", "#990099", "#0099c6", "#dd4477", "#66aa00", "#b82e2e", "#316395", "#994499", "#22aa99", "#aaaa11", "#6633cc", "#e67300", "#8b0707", "#651067", "#329262", "#5574a6", "#3b3eac"];
-  return colores_g[n % colores_g.length];
-}
+
 
 function buildWords(wordsHash){
 var words = [];
@@ -587,6 +629,11 @@ var stemmer = (function(){
 
     }
 })();
+
+
+function secondVideo() {
+    document.getElementById("secondTab").className = "active";
+}
 
 </script>
 </body>
