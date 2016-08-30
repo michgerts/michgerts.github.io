@@ -62,8 +62,9 @@ var height = window.innerHeight;
 var width = window.innerWidth;
 
 var dogResearchData = [];
-var forbbidenWords = ["a","and","then","with","on","the","it","he","or","in","to","she","-","do","does","his","are","for", "is", "by", "at", "what", "of","some", "not","too","every","was","such","their","has","due",
-"be", "as", "but", "durkovato", "imho","zaiteresovana","sabak","something","if", "i", "nervoznoznost","aypada","very"];
+var forbbidenWords = ["a","and","then","with","on","the","it","he","or","in","to","she","-","do","does","his","are","for", "is", "by", "at", "what", "of","some", "not","too","every","was","such","their","has","due", "no", "nothing", "because","eate",
+"gde","be", "as", "but", "durkovato", "imho","zaiteresovana","sabak","something","if", "i", "nervoznoznost","aypada","very","pevye", pitaetsa, 
+"ekrnane"];
 d3.csv("outputNew.csv", function(data) {
     // build the list of city names
     data.forEach( function (d) {
@@ -543,7 +544,7 @@ var stemmer = (function(){
         // Step 4
         re = /^(.+?)(al|ance|ence|er|ic|able|ible|ant|ement|ment|ent|ou|ism|ate|iti|ous|ize)$/;
         //re2 = /^(.+?)(s|t)(ion)$/;
-        if (re.test(w) && w != "animal" && w != "wallpaper") {
+        if (re.test(w) && w != "animal" && w != "wallpaper" && w != "available") {
             var fp = re.exec(w);
             stem = fp[1];
             re = new RegExp(mgr1);
@@ -600,7 +601,7 @@ var stemmer = (function(){
         if (re0.test(w)) { w = w.replace(re0,""); }
 
         re11 = /^over(.+?)$/;
-        if (re0.test(w)) { w = w.substr(4,w.length); }
+        if (re11.test(w)) { w = w.substr(4,w.length); }
 
         return w;
 
