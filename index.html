@@ -585,6 +585,12 @@ var stemmer = (function(){
             w = w + 'e';
         }
 
+        re10 = /^(.+?)i$/;
+        if (re10.test(w)) { 
+            w = w.substr(0,w.length);
+            w.append("y");
+         }
+
         re0 = /^(.+?)ly$/;
         if (re0.test(w)) { w = w.replace(re0,""); }
 
