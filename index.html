@@ -577,7 +577,7 @@ var stemmer = (function(){
         }
 
         if (w.slice(-1) == "i") {
-            w=substr(0,w.length-1);
+            w = w.substr(0,w.length-1);
             w = w.concat("y");
         }
 
