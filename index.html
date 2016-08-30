@@ -469,11 +469,9 @@ var stemmer = (function(){
         }
 
         // Step 1a
-        //re0 = /^(.+?)ly$/;
+        
         re = /^(.+?)(ss|i)es$/;
         re2 = /^(.+?)([^s])s$/;
-
-        //if (re0.test(w)) { w = w.replace(re0,""); }
 
         if (re.test(w)) { w = w.replace(re,"$1$2"); }
         else if (re2.test(w) && w!= "nervous") { w = w.replace(re2,"$1$2"); }
@@ -586,6 +584,9 @@ var stemmer = (function(){
         {
             w = w + 'e';
         }
+
+        re0 = /^(.+?)ly$/;
+        if (re0.test(w)) { w = w.replace(re0,""); }
 
         return w;
 
