@@ -461,7 +461,7 @@ var stemmer = (function(){
             origword = w;
 
         if (w.length < 3) { return w; }
-        w.replace("?","");
+        w = w.replace("?","");
 
         firstch = w.substr(0,1);
         if (firstch == "y") {
