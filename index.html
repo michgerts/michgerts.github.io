@@ -576,6 +576,11 @@ var stemmer = (function(){
             w = firstch.toLowerCase() + w.substr(1);
         }
 
+        if (str.slice(-1) == "i") {
+            w=substr(0,w.length-1);
+            w = w.concat("y");
+        }
+
         return w;
     }
 })();
