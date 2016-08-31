@@ -71,7 +71,7 @@ var height = window.innerHeight;
 var width = window.innerWidth;
 
 var dogResearchData = [];
-var forbbidenWords = ["a","and","then","with","on","the","it","he","or","in","to","she","-","do","does","his","are","for", "is", "by", "at", "what", "of", "zalipla","radost",
+var forbbidenWords = ["a","and","then","with","on","the","it","he","or","in","to","she","-","do","does","his","are","for", "is", "by", "at", "what", "of", "zalipla","radost","azart",
 "be", "as", "but"];
 
 
@@ -123,6 +123,10 @@ $(document).on( 'shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
   loadFunc();
 });
 
+function isValid(str){
+ return !/[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(str);
+}
+
 function loadCloud(fileName) {
 
 var asiaExpert = {};
@@ -140,7 +144,7 @@ d3.csv(fileName, function(data) {
     // build the list of city names
     data.forEach( function (d) {
         d.word = d.word.toLowerCase();
-        if (forbbidenWords.indexOf(d.word) == -1  && !d.word.includes("'"))
+        if (forbbidenWords.indexOf(d.word) == -1  && isValid(d.word) && isNaN(d.word))
         {
             d.word = stemmer(d.word);
             dogResearchData.push({word: d.word, location: d.location, education: d.education, age : d.age});
@@ -602,7 +606,7 @@ var stemmer = (function(){
         // Step 4
         re = /^(.+?)(al|ance|ence|er|ic|able|ible|ant|ement|ment|ent|ou|ism|ate|iti|ous|ive|ize)$/;
         re2 = /^(.+?)(s|t)(ion)$/;
-        if (re.test(w) && w != "animal" && w != "irritate" && w!= "available") {
+        if (re.test(w) && w != "animal" && w != "irritate" && w!= "available" && w!="wallpaper") {
             var fp = re.exec(w);
             stem = fp[1];
             re = new RegExp(mgr1);
