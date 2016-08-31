@@ -71,7 +71,7 @@ var height = window.innerHeight;
 var width = window.innerWidth;
 
 var dogResearchData = [];
-var forbbidenWords = ["a","and","then","with","on","the","it","he","or","in","to","she","-","do","does","his","are","for", "is", "by", "at", "what", "of", "zalipla","radost","azart",
+var forbbidenWords = ["a","and","then","with","on","the","it","he","or","in","to","she","-","do","does","his","are","for", "is", "by", "at", "what", "of", "zalipla","radost","azart","perevozbuzhdeniyudelaet","zamozaryazhayuschimisy",
 "be", "as", "but"];
 
 
@@ -498,6 +498,7 @@ var stemmer = (function(){
             "iviti" : "ive",
             "biliti" : "ble",
             "logi" : "log"
+
         },
 
         step3list = {
@@ -578,7 +579,7 @@ var stemmer = (function(){
             if (re.test(stem)) { w = stem + "i"; }
         }
 
-        // Step 2
+        //Step 2
         re = /^(.+?)(ational|tional|enci|anci|izer|bli|alli|entli|eli|ousli|ization|ation|ator|alism|iveness|fulness|ousness|aliti|iviti|biliti|logi)$/;
         if (re.test(w)) {
             var fp = re.exec(w);
@@ -605,14 +606,14 @@ var stemmer = (function(){
         // Step 4
         re = /^(.+?)(al|ance|ence|er|ic|able|ible|ant|ement|ment|ent|ou|ism|ate|iti|ous|ive|ize)$/;
         re2 = /^(.+?)(s|t)(ion)$/;
-        if (re.test(w)) {
+        if (re.test(w) && w != "animal" && w != "irritate" && w.includes("avail") && w!="wallpaper") {
             var fp = re.exec(w);
             stem = fp[1];
             re = new RegExp(mgr1);
             if (re.test(stem)) {
                 w = stem;
             }
-        } else if (re2.test(w)) {
+        } else if (re2.test(w) && w!="position") {
             var fp = re2.exec(w);
             stem = fp[1] + fp[2];
             re2 = new RegExp(mgr1);
@@ -622,7 +623,7 @@ var stemmer = (function(){
         }
 
         // Step 5
-        re = /^(.+?)e$/;
+        /*re = /^(.+?)e$/;
         if (re.test(w)) {
             var fp = re.exec(w);
             stem = fp[1];
@@ -632,7 +633,7 @@ var stemmer = (function(){
             if (re.test(stem) || (re2.test(stem) && !(re3.test(stem)))) {
                 w = stem;
             }
-        }
+        }*/
 
         re = /ll$/;
         re2 = new RegExp(mgr1);
@@ -647,7 +648,18 @@ var stemmer = (function(){
             w = firstch.toLowerCase() + w.substr(1);
         }
 
+        if (w.slice(-1) == "i") {
+            w = w.substr(0,w.length-1);
+            w = w.concat("y");
+        }
+
+        /*if (w.includes("excit") || w.includes("engag") || w.includes("frustrat") || w.includes("fixat") || w.includes("violat") || w.includes("courag") || w.includes("voic") || w.includes("activ")|| w.includes("imag"))
+            w = w.concat("e");*/
+        if (w == "viciou")
+            w = w.concat("s");
+
         return w;
+
     }
 })();
 
