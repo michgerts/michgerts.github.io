@@ -71,7 +71,7 @@ var height = window.innerHeight;
 var width = window.innerWidth;
 
 var dogResearchData = [];
-var forbbidenWords = ["a","and","then","with","on","the","it","he","or","in","to","she","-","do","does","his","are","for", "is", "by", "at", "what", "of", "zalipla","radost","azart","perevozbuzhdeniyudelaet","zamozaryazhayuschimisy", "aypada","be", "as", "but"];
+var forbbidenWords = ["a","and","then","with","on","the","it","he","or","in","to","she","-","do","does","his","are","for", "is", "by", "at", "what", "of", "zalipla","radost","azart","perevozbuzhdeniyudelaet","zamozaryazhayuschimisy", "aypada","be", "as", "but", "prishlepnut"];
 
 
 function loadFunc()
@@ -605,7 +605,7 @@ var stemmer = (function(){
         // Step 4
         re = /^(.+?)(al|ance|ence|er|ic|able|ible|ant|ement|ment|ent|ou|ism|ate|iti|ous|ive|ize)$/;
         re2 = /^(.+?)(s|t)(ion)$/;
-        if (re.test(w) && w != "animal" && w != "irritate" && w.includes("avail") && w!="wallpaper") {
+        if (re.test(w) && w != "animal" && w != "irritate" && !w.includes("avail") && w!="wallpaper") {
             var fp = re.exec(w);
             stem = fp[1];
             re = new RegExp(mgr1);
@@ -654,7 +654,7 @@ var stemmer = (function(){
 
         if ((w.includes("excit") && !w.includes("ment")) || w.includes("engag") || w.includes("frustrat") || w.includes("fixat") || w.includes("violat") || w.includes("courag") || w.includes("voic") || w.includes("activ")|| w.includes("imag"))
             w = w.concat("e");
-        if (w == "viciou")
+        if (w == "viciou" || w == "nervou")
             w = w.concat("s");
 
         return w;
